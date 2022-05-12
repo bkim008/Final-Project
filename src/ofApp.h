@@ -1,46 +1,29 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxAssimpModelLoader.h"
+#include "ofxGui.h"
+#include "ofxRD.h"
+#include "ofxRDSampleRenderer.h"
 
 class ofApp : public ofBaseApp{
-
-    public:
-        void setup();
-        void update();
-        void draw();
-
-        void keyPressed(int key);
-        void keyReleased(int key);
-        void mouseMoved(int x, int y );
-        void mouseDragged(int x, int y, int button);
-        void mousePressed(int x, int y, int button);
-        void mouseReleased(int x, int y, int button);
-        void mouseEntered(int x, int y);
-        void mouseExited(int x, int y);
-        void windowResized(int w, int h);
-        void dragEvent(ofDragInfo dragInfo);
-        void gotMessage(ofMessage msg);
+    float planeSizeRatio = 0.75;
+    float texResolution = 0.25;
     
-    ofxAssimpModelLoader model;
+    ofxRD rd;
+    ofxRDSampleRenderer renderer;
     
-    float Xa = 0;
-    float angle;
+    ofEasyCam eCam;
+    ofxPanel panelRD;
+    ofxPanel panelRenderer;
     
-    int time = 0;
+    bool isMouseOn;
     
-        
-    ofLight    light;
-    ofEasyCam cam;
+public:
+    void setup();
+    void update();
+    void draw();
     
-    
-    ofCamera camera;
-    ofVec3f camCenter;
-    ofVec3f camPosition;
-    ofVec3f shakeCam;
-    
-    ofPlanePrimitive plane;
-    
-    glm::vec3 make_point(float R, float r, float u, float v);
-    glm::vec3 make_point2(float R, float r, float u, float v);
+    void keyPressed(int key);
+    void mousePressed(int x, int y, int button);
+    void mouseReleased(int x, int y, int button);
 };
